@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../store/auth.js'
 import LoginForm from '../components/LoginForm.vue'
 import Dashboard from '../pages/Dashboard.vue'
+import DocumentView from '../pages/DocumentView.vue'
 
 const routes = [
   {
@@ -13,6 +14,12 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/document',
+    name: 'Document',
+    component: DocumentView,
     meta: { requiresAuth: true }
   }
 ]

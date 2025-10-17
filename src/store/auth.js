@@ -18,8 +18,16 @@ export const useAuthStore = defineStore('auth', {
         const maxAge = 24 * 60 * 60 // 24 hours in seconds
         document.cookie = `app_session=${token}; path=/; max-age=${maxAge}; SameSite=Lax`
 
-        console.log('Login successful - Cookie set:', token)
-        console.log('Current cookies:', document.cookie)
+        console.log('═══════════════════════════════════════════════')
+        console.log('🔐 LOGIN EVENT')
+        console.log('═══════════════════════════════════════════════')
+        console.log('✅ Login successful')
+        console.log('🔑 Session Token:', token)
+        console.log('📧 Email:', credentials.email)
+        console.log('🍪 Cookie Set:', `app_session=${token}`)
+        console.log('📋 All Cookies:', document.cookie)
+        console.log('🕐 Timestamp:', new Date().toISOString())
+        console.log('═══════════════════════════════════════════════')
 
         this.isAuthenticated = true
         this.user = { email: credentials.email }
@@ -40,8 +48,16 @@ export const useAuthStore = defineStore('auth', {
         const maxAge = 24 * 60 * 60 // 24 hours in seconds
         document.cookie = `app_session=${token}; path=/; max-age=${maxAge}; SameSite=Lax`
 
-        console.log('Token login successful - Cookie set:', token)
-        console.log('Current cookies:', document.cookie)
+        console.log('═══════════════════════════════════════════════')
+        console.log('🔗 EXTERNAL TOKEN LOGIN')
+        console.log('═══════════════════════════════════════════════')
+        console.log('✅ Token login successful')
+        console.log('🔑 External Token:', token)
+        console.log('🍪 Cookie Set:', `app_session=${token}`)
+        console.log('📋 All Cookies:', document.cookie)
+        console.log('🕐 Timestamp:', new Date().toISOString())
+        console.log('🌐 Source URL:', window.location.href)
+        console.log('═══════════════════════════════════════════════')
 
         this.isAuthenticated = true
         this.user = { email: 'external@example.com' }
@@ -59,8 +75,15 @@ export const useAuthStore = defineStore('auth', {
       this.isAuthenticated = false
       this.user = null
       document.cookie = 'app_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'
-      console.log('Logged out - Cookie cleared')
-      console.log('Current cookies:', document.cookie)
+
+      console.log('═══════════════════════════════════════════════')
+      console.log('🚪 LOGOUT EVENT')
+      console.log('═══════════════════════════════════════════════')
+      console.log('✅ Logout successful')
+      console.log('🗑️  Cookie cleared: app_session')
+      console.log('📋 Remaining Cookies:', document.cookie || 'NONE')
+      console.log('🕐 Timestamp:', new Date().toISOString())
+      console.log('═══════════════════════════════════════════════')
     },
 
     checkAuth() {
@@ -69,15 +92,24 @@ export const useAuthStore = defineStore('auth', {
         cookie.trim().startsWith('app_session=')
       )
 
+      console.log('═══════════════════════════════════════════════')
+      console.log('🔍 AUTH CHECK')
+      console.log('═══════════════════════════════════════════════')
+
       if (sessionCookie) {
         const token = sessionCookie.split('=')[1]
-        console.log('Auth check - Found session cookie:', token)
+        console.log('✅ Session found')
+        console.log('🔑 Session Token:', token)
+        console.log('📋 All Cookies:', document.cookie)
         this.isAuthenticated = true
         this.user = { email: 'authenticated@example.com' }
       } else {
-        console.log('Auth check - No session cookie found')
-        console.log('Current cookies:', document.cookie)
+        console.log('❌ No session found')
+        console.log('📋 All Cookies:', document.cookie || 'NONE')
       }
+
+      console.log('🕐 Timestamp:', new Date().toISOString())
+      console.log('═══════════════════════════════════════════════')
     }
   }
 })
