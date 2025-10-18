@@ -39,6 +39,14 @@
       <pre>{{ currentCookies }}</pre>
     </div>
 
+    <div class="token-test-section">
+      <h3>API Token Testing</h3>
+      <p>Test the four authentication endpoints with token generation and validation:</p>
+      <button @click="goToTokenTest" class="btn-test">
+        Open Token Test Suite
+      </button>
+    </div>
+
     <div class="actions">
       <button @click="refreshCookies" class="btn-secondary">
         Refresh Cookie Info
@@ -113,6 +121,10 @@ export default {
       router.push('/')
     }
 
+    const goToTokenTest = () => {
+      router.push('/tokens')
+    }
+
     onMounted(() => {
       refreshCookies()
     })
@@ -126,7 +138,8 @@ export default {
       generateDocumentLink,
       copyLink,
       refreshCookies,
-      logout
+      logout,
+      goToTokenTest
     }
   }
 }
@@ -298,5 +311,38 @@ export default {
 
 .btn-danger:hover {
   background-color: #c82333;
+}
+
+.token-test-section {
+  background-color: #fff3cd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #ffc107;
+}
+
+.token-test-section h3 {
+  margin-top: 0;
+  color: #856404;
+}
+
+.token-test-section p {
+  color: #856404;
+  margin-bottom: 15px;
+}
+
+.btn-test {
+  padding: 12px 24px;
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-test:hover {
+  background-color: #e0a800;
 }
 </style>

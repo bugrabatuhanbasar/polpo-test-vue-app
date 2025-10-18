@@ -3,6 +3,7 @@ import { useAuthStore } from '../store/auth.js'
 import LoginForm from '../components/LoginForm.vue'
 import Dashboard from '../pages/Dashboard.vue'
 import DocumentView from '../pages/DocumentView.vue'
+import TokenTestPage from '../pages/TokenTestPage.vue'
 
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     path: '/document',
     name: 'Document',
     component: DocumentView,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/tokens',
+    name: 'TokenTest',
+    component: TokenTestPage,
     meta: { requiresAuth: true }
   }
 ]
